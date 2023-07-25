@@ -1,4 +1,5 @@
 using Backend.Models.Data;
+using Backend.Models.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,12 @@ builder.Services.AddCors(options => options.AddPolicy("AllowWebApp",
                                     builder => builder.AllowAnyOrigin()
                                                       .AllowAnyHeader()
                                                       .AllowAnyMethod()));
+
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
+//Injection Services
+builder.Services.AddScoped<IMascotaRepository, MascotaRepository>();
 
 var app = builder.Build();
 
