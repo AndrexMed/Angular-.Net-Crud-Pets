@@ -72,6 +72,7 @@ export class AgregarEditarMascotaComponent implements OnInit {
     // const nombre2 = this.formulario.get("nombre")?.value
     // console.log(nombre + "\n" + nombre2)
     const mascota: Mascota = {
+      idMascota: this.id,
       nombre: this.formulario.value.nombre,
       raza: this.formulario.value.raza,
       color: this.formulario.value.color,
@@ -79,8 +80,10 @@ export class AgregarEditarMascotaComponent implements OnInit {
       peso: this.formulario.value.peso,
     }
 
+    console.log(mascota)
+
     if (this.id != 0) {
-      mascota.id = this.id
+      mascota.idMascota = this.id
       this.actualizarMascota(this.id, mascota)
       console.log("llego aqui xx", this.id)
     } else {
@@ -112,6 +115,7 @@ export class AgregarEditarMascotaComponent implements OnInit {
       },
       error => {
         console.log("no se proceso", error)
+        this.loading = false
       }
     )
   }
